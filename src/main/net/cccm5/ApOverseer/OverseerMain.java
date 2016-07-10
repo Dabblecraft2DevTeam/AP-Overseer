@@ -55,25 +55,25 @@ public class OverseerMain extends JavaPlugin {
             if(sender.hasPermission("ApOverseer.playerSpy")){
                 if(!playerSpy.contains(sender))
                 {
-                    playerSpy.add(sender);
-                    sender.sendMessage("Started observing player commands");
+                    //playerSpy.add(sender);
+                    //sender.sendMessage("Started observing player commands");
                     return true;
                 }else{
-                    playerSpy.remove(sender);
-                    sender.sendMessage("stopped observing player commands");
+                    //playerSpy.remove(sender);
+                    //sender.sendMessage("stopped observing player commands");
                     return true;
                 }
             }
             else
             {
-                sender.sendMessage("You don't have permision for that!");
+                //sender.sendMessage("You don't have permision for that!");
                 return false;
             }
         }
         return false;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
     	//testing
     	Bukkit.broadcastMessage(event.getMessage());
