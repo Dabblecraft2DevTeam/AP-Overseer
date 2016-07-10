@@ -4,8 +4,6 @@ version: 1.0
 commands:
     playerSpy:
         spys on player commands
-    consoleSpy:
-        spys on console output
 permissions:
     ApOverseer.playerSpy:
         Allows users to spy on players
