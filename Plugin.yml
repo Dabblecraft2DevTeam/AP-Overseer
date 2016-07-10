@@ -1,0 +1,13 @@
+name: ApOverseer
+main: OverseerMain
+version: 1.0
+commands:
+    chatSpy:
+        spys on player commands
+    consoleSpy:
+        spys on console output
+permissions:
+    ApOverseer.playerSpy:
+        Allows users to spy on players
+    ApOverseer.consoleSpy:
+        Allows users to spy on console log
