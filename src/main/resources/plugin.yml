@@ -3,9 +3,10 @@ main: net.cccm5.ApOverseer.OverseerMain
 version: 1.0
 commands:
     playerSpy:
-        spys on player commands
+        description: spys on player commands
+        permission: ApOverseer.playerSpy
 permissions:
     ApOverseer.playerSpy:
-        Allows users to spy on players
+        description: Allows users to spy on players
     ApOverseer.consoleSpy:
-        Allows users to spy on console log
+        description: Allows users to spy on console log
