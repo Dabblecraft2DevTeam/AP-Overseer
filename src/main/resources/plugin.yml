@@ -2,7 +2,7 @@ name: Ap-Overseer
 main: net.cccm5.ApOverseer.OverseerMain
 version: 1.0
 commands:
-    chatSpy:
+    playerSpy:
         spys on player commands
     consoleSpy:
         spys on console output
