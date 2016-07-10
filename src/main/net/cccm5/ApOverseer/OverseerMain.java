@@ -1,14 +1,12 @@
-package net.cccm5.ApOverseer;
-
 
 import java.util.ArrayList;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.Bukkit;
 
 public class OverseerMain extends JavaPlugin {
     private FileConfiguration config = getConfig();
@@ -55,31 +53,30 @@ public class OverseerMain extends JavaPlugin {
             if(sender.hasPermission("ApOverseer.playerSpy")){
                 if(!playerSpy.contains(sender))
                 {
-                    //playerSpy.add(sender);
-                    //sender.sendMessage("Started observing player commands");
+                    playerSpy.add(sender);
+                    sender.sendMessage("Started observing player commands");
                     return true;
                 }else{
-                    //playerSpy.remove(sender);
-                    //sender.sendMessage("stopped observing player commands");
+                    playerSpy.remove(sender);
+                    sender.sendMessage("stopped observing player commands");
                     return true;
                 }
             }
             else
             {
-                //sender.sendMessage("You don't have permision for that!");
-                return false;
+                sender.sendMessage("You don't have permision for that!");
+                return true;
             }
-            return true;
         }
         return false;
     }
 
     @EventHandler
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
-    	//testing
+        boolean testState=true;
+        //testing
     	Bukkit.broadcastMessage(event.getMessage());
     	//
-        boolean testState=true;
         if(!includeChat)
         {
             for(String testString : chatCommands)
