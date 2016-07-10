@@ -1,4 +1,4 @@
-package ApOverseer;
+package net.cccm5.ApOverseer;
 
 
 import java.util.ArrayList;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
