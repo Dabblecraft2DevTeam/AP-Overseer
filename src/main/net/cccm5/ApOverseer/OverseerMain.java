@@ -69,6 +69,7 @@ public class OverseerMain extends JavaPlugin {
                 //sender.sendMessage("You don't have permision for that!");
                 return false;
             }
+            return true;
         }
         return false;
     }
