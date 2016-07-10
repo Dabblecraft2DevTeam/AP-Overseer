@@ -39,9 +39,9 @@ public class OverseerMain extends JavaPlugin {
         this.saveConfig();
         saveDefaultConfig();
         //////Load Config//////
-        includeChat = getConfig().getBoolean("Include chat messages");
-        chatCommands.addAll(getConfig().getStringList("Chat message commands"));
-        excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
+        //includeChat = getConfig().getBoolean("Include chat messages");
+        //chatCommands.addAll(getConfig().getStringList("Chat message commands"));
+        //excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
 
         //getServer().getPluginManager().registerEvents(this, this);
     }
