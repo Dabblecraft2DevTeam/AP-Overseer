@@ -75,6 +75,9 @@ public class OverseerMain extends JavaPlugin {
 
     @EventHandler
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
+    	//testing
+    	Bukkit.broadcastMessage(event.getMessage());
+    	//
         boolean testState=true;
         if(!includeChat)
         {
