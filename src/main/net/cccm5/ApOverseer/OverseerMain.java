@@ -43,7 +43,7 @@ public class OverseerMain extends JavaPlugin {
         chatCommands.addAll(getConfig().getStringList("Chat message commands"));
         excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
         
-        getServer().getPluginManager().registerEvents(this, this);
+        //getServer().getPluginManager().registerEvents(this, this);
 	}
 	@Override
     public void onDisable() {
