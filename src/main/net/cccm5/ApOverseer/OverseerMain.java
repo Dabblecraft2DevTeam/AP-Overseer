@@ -73,7 +73,7 @@ public class OverseerMain extends JavaPlugin {
         return false;
     }
 
-    @EventHandler(priority = EventPriority.HIGH)
+    @EventHandler
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
     	//testing
     	Bukkit.broadcastMessage(event.getMessage());
