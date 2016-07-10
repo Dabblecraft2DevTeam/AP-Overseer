@@ -37,10 +37,13 @@ public class OverseerMain extends JavaPlugin {
 		config.addDefault("Excluded Commands", tempCommands);
 		config.options().copyDefaults(true);
         this.saveConfig();
+        saveDefaultConfig();
         //////Load Config//////
         includeChat = getConfig().getBoolean("Include chat messages");
         chatCommands.addAll(getConfig().getStringList("Chat message commands"));
         excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
+        
+        getServer().getPluginManager().registerEvents(this, this);
 	}
 	@Override
     public void onDisable() {
@@ -48,16 +51,16 @@ public class OverseerMain extends JavaPlugin {
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(cmd.getName().equalsIgnoreCase("playerSpy")){
-			if(sender.hasPermission("ApOverseer.playerSpy")){
+			//if(sender.hasPermission("ApOverseer.playerSpy")){
 				playerSpy.add(sender);
 				return true;
 			}
-			else
-			{
-				sender.sendMessage("You don't have permision for that!");
-				return false;
-			}
-		}
+			//else
+			//{
+				//sender.sendMessage("You don't have permision for that!");
+				//return false;
+			//}
+		//}
 		return false;
 	}
 	
