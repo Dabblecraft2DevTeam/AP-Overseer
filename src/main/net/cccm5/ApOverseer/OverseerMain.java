@@ -10,6 +10,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 
 public final class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
