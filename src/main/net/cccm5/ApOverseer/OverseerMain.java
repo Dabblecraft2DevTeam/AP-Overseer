@@ -1,8 +1,8 @@
 package net.cccm5.ApOverseer;
 
 
-
 import java.util.ArrayList;
+import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -14,8 +14,8 @@ import org.bukkit.event.Listener;
 
 public final class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
-    private ArrayList<String> chatCommands,excludedCommands=new ArrayList<String>();
-    private ArrayList<CommandSender> playerSpy=new ArrayList<CommandSender>();
+    private List<String> chatCommands,excludedCommands=new ArrayList<String>();
+    private List<CommandSender> playerSpy=new ArrayList<CommandSender>();
     private boolean includeChat;
     @Override
     public void onEnable() {
