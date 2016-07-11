@@ -81,13 +81,13 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         {
             for(String testString : chatCommands)
             {
-                if(event.getMessage().toLowerCase().startsWith(testString))
+                if(event.getMessage().toLowerCase().startsWith(testString+" "))
                     testState=false;
             }
         }
         for(String testString : excludedCommands)
         {
-            if(event.getMessage().toLowerCase().startsWith(testString))
+            if(event.getMessage().toLowerCase().startsWith(testString+" "))
                 testState=false;
         }
         if(testState)
