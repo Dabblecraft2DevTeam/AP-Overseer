@@ -2,12 +2,12 @@ name: Ap-Overseer
 main: net.cccm5.ApOverseer.OverseerMain
 version: 1.0
 commands:
-    playerSpy:
+    commandSpy:
         description: spys on player commands
-        permission: ApOverseer.playerSpy
-        usage: /playerspy
+        permission: ApOverseer.commandSpy
+        usage: /commandSpy
 permissions:
-    ApOverseer.playerSpy:
+    ApOverseer.commandSpy:
         description: Allows users to spy on players
     ApOverseer.consoleSpy:
         description: Allows users to spy on console log
