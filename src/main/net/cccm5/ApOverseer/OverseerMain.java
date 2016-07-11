@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 
-public class OverseerMain extends JavaPlugin {
+public class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
     private ArrayList<String> chatCommands,excludedCommands=new ArrayList<String>();
     private ArrayList<CommandSender> playerSpy=new ArrayList<CommandSender>();
