@@ -10,8 +10,8 @@ import org.bukkit.Bukkit;
 
 public class OverseerMain extends JavaPlugin {
     private FileConfiguration config = getConfig();
-    private ArrayList<String> chatCommands,excludedCommands;
-    private ArrayList<CommandSender> playerSpy,consoleSpy;
+    private ArrayList<String> chatCommands,excludedCommands=new ArrayList<String>();
+    private ArrayList<CommandSender> playerSpy=new ArrayList<CommandSender>();
     private boolean includeChat;
     @Override
     public void onEnable() {
@@ -37,9 +37,9 @@ public class OverseerMain extends JavaPlugin {
         this.saveConfig();
         saveDefaultConfig();
         //////Load Config//////
-        //includeChat = getConfig().getBoolean("Include chat messages");
-        //chatCommands.addAll(getConfig().getStringList("Chat message commands"));
-        //excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
+        includeChat = getConfig().getBoolean("Include chat messages");
+        chatCommands.addAll(getConfig().getStringList("Chat message commands"));
+        excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
 
         //getServer().getPluginManager().registerEvents(this, this);
     }
