@@ -14,7 +14,8 @@ import org.bukkit.event.Listener;
 
 public final class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
-    private List<String> chatCommands,excludedCommands=new ArrayList<String>();
+    //private List<String> chatCommands,excludedCommands=new ArrayList<String>();
+    private List<String> chatCommands,excludedCommands;
     private List<CommandSender> playerSpy=new ArrayList<CommandSender>();
     private boolean includeChat;
     @Override
@@ -41,8 +42,10 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         this.saveConfig();
         //////Load Config//////
         includeChat = getConfig().getBoolean("Include chat messages");
-        chatCommands.addAll(getConfig().getStringList("Chat message commands"));
-        excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
+        //chatCommands.addAll(getConfig().getStringList("Chat message commands"));
+        //excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
+        chatCommands=getConfig().getStringList("Chat message commands");
+        excludedCommands=getConfig().getStringList("Excluded Commands");
         getServer().getPluginManager().registerEvents(this, this);
         //getServer().getPluginManager().registerEvents(this, this);
     }
