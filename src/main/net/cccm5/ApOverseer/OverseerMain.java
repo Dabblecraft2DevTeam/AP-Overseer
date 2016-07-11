@@ -1,6 +1,5 @@
 package net.cccm5.ApOverseer;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import org.bukkit.command.Command;
@@ -93,7 +92,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         }
         if(testState)
             for(CommandSender observer: commandSpy){	
-                if((observer instanceof Player) && !(observer==event.getPlayer()))
+                if(!(observer instanceof Player) && !(observer==event.getPlayer()))
                     observer.sendMessage(event.getPlayer().getDisplayName() + ": " + event.getMessage());	
             }
     }
@@ -117,7 +116,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         }
         if(testState)
             for(CommandSender observer: commandSpy){
-                if(!(observer instanceof Player))
+                if((observer instanceof Player))
                 observer.sendMessage("console: " + event.getCommand());	
             }
     }
