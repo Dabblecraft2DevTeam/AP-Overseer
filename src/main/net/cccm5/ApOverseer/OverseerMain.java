@@ -38,12 +38,11 @@ public class OverseerMain extends JavaPlugin {
         config.addDefault("Excluded Commands", tempCommands);
         config.options().copyDefaults(true);
         this.saveConfig();
-        saveDefaultConfig();
         //////Load Config//////
         includeChat = getConfig().getBoolean("Include chat messages");
         chatCommands.addAll(getConfig().getStringList("Chat message commands"));
         excludedCommands.addAll(getConfig().getStringList("Excluded Commands"));
-
+        getServer().getPluginManager().registerEvents(this, this);
         //getServer().getPluginManager().registerEvents(this, this);
     }
 
@@ -78,8 +77,8 @@ public class OverseerMain extends JavaPlugin {
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
         boolean testState=true;
         //testing
-    	Bukkit.broadcastMessage(event.getMessage());
-    	//
+        Bukkit.broadcastMessage(event.getMessage());
+        //
         if(!includeChat)
         {
             for(String testString : chatCommands)
