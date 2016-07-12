@@ -12,6 +12,17 @@ import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.event.server.ServerCommandEvent;
 import org.bukkit.entity.Player;
+
+import org.apache.logging.log4j.core.LogEvent;
+import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.message.Message;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
+import org.apache.logging.log4j.core.LogEvent;
+import org.apache.logging.log4j.core.appender.AbstractAppender;
+import org.apache.logging.log4j.core.config.plugins.Plugin;
+import org.apache.logging.log4j.core.layout.PatternLayout;
+
 public final class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
     private List<String> chatCommands,excludedCommands;
@@ -45,6 +56,9 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         excludedCommands=getConfig().getStringList("Excluded Commands");
         getServer().getPluginManager().registerEvents(this, this);
         //getServer().getPluginManager().registerEvents(this, this);
+        //set up logger
+        Logger log = (Logger) LogManager.getRootLogger();
+        log.addAppender(new Log4JAppender());
     }
 
     @Override
@@ -117,8 +131,17 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         if(testState)
             for(CommandSender observer: commandSpy){
                 if((observer instanceof Player))
-                observer.sendMessage("console: " + event.getCommand());	
+                    observer.sendMessage("console: " + event.getCommand());	
             }
     }
-}
 
+    public void sendConsoleOutput(String s)
+    {
+        Bukkit.broadcastMessage(s);
+        //         for(CommandSender observer: commandSpy){
+        //             if((observer instanceof Player))
+        //                 observer.sendMessage(s);	
+        //         }
+    }
+
+}
