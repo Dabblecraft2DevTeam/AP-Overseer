@@ -10,7 +10,7 @@ public class Log4JAppender extends AbstractAppender {
 
     public Log4JAppender() {
         super("Log4JAppender", null,
-                PatternLayout.createLayout(
+        		org.apache.logging.log4j.core.layout.PatternLayout.createLayout(
                         "[%d{HH:mm:ss} %level]: %msg",
                         null, null, null, null), false);
     }
