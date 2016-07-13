@@ -13,7 +13,7 @@ public class Log4JAppender extends AbstractAppender {
         		//PatternLayout.createLayout(
                 //        "[%d{HH:mm:ss} %level]: %msg",
                 //        null, null, null, null), false);
-        		PatternLayout.createDefaultLayout(), false);
+        		PatternLayout.newBuilder().withPattern("[%d{HH:mm:ss} %level]: %msg").build(), false);
     }
 
     @Override
