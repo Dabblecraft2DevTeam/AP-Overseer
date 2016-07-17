@@ -237,13 +237,15 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 tempList.add("help");
                 if(!includeChat)
                     tempList.add("socialSpy");
-                for(String tempString : tempList)
-                {
-                    if(!tempString.startsWith(args[0]))
-                        tempList.remove(tempString);
+                if( args[0].length() > 1 ){
+                    for(String tempString : tempList){
+                        if(!tempString.startsWith(args[0]))
+                            tempList.remove(tempString);
+                    }
                 }
             }
-            return tempList;
+            if(tempList.size()>0)
+                return tempList;
         }
         return null;
     }
