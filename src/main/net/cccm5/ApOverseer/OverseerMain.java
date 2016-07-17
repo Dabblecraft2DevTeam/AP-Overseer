@@ -88,7 +88,9 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 sender.sendMessage("§a-----§bAP Overseer§a-----");
                 sender.sendMessage("§a/overseer help:    §bview this message");
                 sender.sendMessage("§a/overseer commandSpy: §bsend command inputs to you");
-                sender.sendMessage("§a/overseer color <color>:   §bset the output color of commands"); 
+                sender.sendMessage("§a/overseer color <color>:   §bset the output color of commands");
+                if(!includeChat)
+                    sender.sendMessage("§a/overseer socialSpy: §bsend social command inputs to you");                
                 return true;
             }
             //executes the commandSpy sub-command
