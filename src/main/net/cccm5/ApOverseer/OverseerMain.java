@@ -73,19 +73,23 @@ public final class OverseerMain extends JavaPlugin implements Listener {
 
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if(cmd.getName().equalsIgnoreCase("overseer")){
+            //check if player has permision for main command
             if(!sender.hasPermission("ApOverseer.main"))
             {
                 sender.sendMessage("§4You don't have permission to do that");
                 return true;
             }
+            //check if player is using help or if theres no arguments
             if(args.length==0 || args[0].equalsIgnoreCase("help"))
             {
                 sender.sendMessage("§a-----§bAP Overseer§a-----");
                 sender.sendMessage("§a/overseer help:    §bview this message");
                 sender.sendMessage("§a/overseer commandSpy: §bsend command inputs to you");
                 sender.sendMessage("§a/overseer color <color>:   §bset the output color of commands"); 
+                return true;
             }
-            if(args[0].equalsIgnoreCase("commandSpy")){
+            //executes the commandSpy sub-command
+            if(args[0].equalsIgnoreCase("commandSpy")||args[0].equalsIgnoreCase("cspy")){
                 if(sender.hasPermission("ApOverseer.commandSpy")){
                     if(!commandSpy.contains(sender))
                     {
@@ -104,24 +108,24 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                     return true;
                 }
             }
-        }
-        if(cmd.getName().equalsIgnoreCase("overseerColor")){
-            if(args.length!=2)
-            {
-                sender.sendMessage("§4Error: correct format is /overseer color <color>");
-                return true;
-            }
-            if(args[1].length()!=1 || !(args[1].toLowerCase().charAt(0)>='a' && args[1].toLowerCase().charAt(0)<='f') || !(args[1].charAt(0)>='0' && args[1].charAt(0)<='9'))
-            {
-                sender.sendMessage("§4Error: \"" + args[1] + "\" is not a color code");
-                return true;
-            }
-            if(sender.hasPermission("ApOverseer.setColor")){
+            //sets the output of the command spy and log spy to the 2nd argument
+            if(args[0].equalsIgnoreCase("color")){
+                if(!sender.hasPermission("ApOverseer.setColor")){
+                    sender.sendMessage("§4You don't have permission for that!");
+                    return true;
+                }
+                if(args.length!=2)
+                {
+                    sender.sendMessage("§4Error: correct format is /overseer color <color>");
+                    return true;
+                }
+                if(args[1].length()!=1 || !(args[1].toLowerCase().charAt(0)>='a' && args[1].toLowerCase().charAt(0)<='f') || !(args[1].charAt(0)>='0' && args[1].charAt(0)<='9'))
+                {
+                    sender.sendMessage("§4Error: \"" + args[1] + "\" is not a color code");
+                    return true;
+                }
                 nameColor.put(sender.getName(),args[1]);
                 sender.sendMessage("§acolor set to §" + args[1] + "&" +args[1]);
-                return true;
-            }else{
-                sender.sendMessage("§4You don't have permission for that!");
                 return true;
             }
         }
@@ -147,7 +151,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         if(testState)
             for(CommandSender observer: commandSpy){	
                 if(!(observer instanceof Player) && !(observer==event.getPlayer()))
-                    observer.sendMessage(event.getPlayer().getDisplayName() + ": §" + nameColor.get(event.getPlayer().getName())+ event.getMessage());	
+                    observer.sendMessage(event.getPlayer().getDisplayName() + ": §" + nameToColor(event.getPlayer().getName())+ event.getMessage());	
             }
     }
 
@@ -171,8 +175,15 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         if(testState)
             for(CommandSender observer: commandSpy){
                 if((observer instanceof Player))
-                    observer.sendMessage("console: §" + nameColor.get(event.getSender().getName()) + event.getCommand());	
+                    observer.sendMessage("console: §" + nameToColor(event.getSender().getName()) + event.getCommand());	
             }
+    }
+
+    public String nameToColor(String name)
+    {
+        if(nameColor.containsKey(name))
+            return nameColor.get(name);
+        return "f";
     }
 
     public void sendConsoleOutput(String s)
