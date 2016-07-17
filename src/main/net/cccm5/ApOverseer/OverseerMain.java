@@ -90,7 +90,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 sender.sendMessage("§a/overseer commandSpy: §bsend command inputs to you");
                 sender.sendMessage("§a/overseer color <color>:   §bset the output color of commands");
                 if(!includeChat)
-                    sender.sendMessage("§a/overseer socialSpy: §bsend social command inputs to you");                
+                    sender.sendMessage("§a/overseer socialSpy: §bsend social command inputs to you");
                 return true;
             }
             //executes the commandSpy sub-command
@@ -237,6 +237,11 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 tempList.add("help");
                 if(!includeChat)
                     tempList.add("socialSpy");
+                for(String tempString : tempList)
+                {
+                    if(!tempString.startsWith(args[0]))
+                        tempList.remove(tempString);
+                }
             }
             return tempList;
         }
