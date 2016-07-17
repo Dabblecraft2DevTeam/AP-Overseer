@@ -68,6 +68,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
 
         //Logger log = (Logger) LogManager.getRootLogger();
         //log.addAppender(new Log4JAppender());
+        ((org.apache.logging.log4j.core.Logger) org.apache.logging.log4j.LogManager.getRootLogger()).addAppender(new Log4JAppender("Log Appender",null,null));
     }
 
     @Override
