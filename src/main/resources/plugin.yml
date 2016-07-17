@@ -1,6 +1,6 @@
 name: Ap-Overseer
 main: net.cccm5.ApOverseer.OverseerMain
-version: 0.6.1
+version: 0.6.2
 commands:
     overseer:
         description: Main command

@@ -45,11 +45,14 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         tempCommands.add("/whisper");
         tempCommands.add("/ch qm");
         tempCommands.add("/helpop");
+        tempCommands.add("/tell");
+        tempCommands.add("/msg");
         config.addDefault("Chat message commands", tempCommands);
         //default list of excluded commands
         tempCommands=new ArrayList<String>();
         tempCommands.add("/help");
         tempCommands.add("/rules");
+        tempCommands.add("/ping");
         config.addDefault("Excluded Commands", tempCommands);
         config.options().copyDefaults(true);
         this.saveConfig();
@@ -199,7 +202,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         {
             for(String testString : chatCommands)
             {
-                if(event.getCommand().toLowerCase().startsWith(testString+" ") || event.getCommand().equalsIgnoreCase(testString))
+                if(("/"+event.getCommand().toLowerCase()).startsWith(testString+" ") || ("/"+event.getCommand()).equalsIgnoreCase(testString))
                 {
                     chatCommand=true;
                     testState=false;
@@ -208,7 +211,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         }
         for(String testString : excludedCommands)
         {
-            if(event.getCommand().toLowerCase().startsWith(testString+" ") || event.getCommand().equalsIgnoreCase(testString))
+            if(("/"+event.getCommand().toLowerCase()).startsWith(testString+" ") || ("/"+event.getCommand()).equalsIgnoreCase(testString))
                 testState=false;
         }
         if(testState)
