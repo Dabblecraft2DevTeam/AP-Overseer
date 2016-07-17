@@ -1,11 +1,11 @@
 name: Ap-Overseer
 main: net.cccm5.ApOverseer.OverseerMain
-version: 1.0
+version: 0.5.0
 commands:
     overseer:
         description: Main command
         permission: ApOverseer.main
-        usage: /overseer help
+        usage: §cError:§4 Use "/overseer help" for a full list of commands
 permissions:
     ApOverseer.main:
         description: Allows acces to the main command

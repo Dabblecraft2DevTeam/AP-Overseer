@@ -156,7 +156,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         if(testState)
             for(CommandSender observer: commandSpy){	
                 if(!(observer instanceof Player) && !(observer==event.getPlayer()))
-                    observer.sendMessage(event.getPlayer().getDisplayName() + ": §" + nameToColor(event.getPlayer().getName())+ event.getMessage());	
+                    observer.sendMessage("§b[§aoverseer§b]" + event.getPlayer().getDisplayName() + ": §" + nameToColor(observer.getName())+ event.getMessage());	
             }
     }
 
@@ -180,7 +180,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         if(testState)
             for(CommandSender observer: commandSpy){
                 if((observer instanceof Player))
-                    observer.sendMessage("console: §" + nameToColor(event.getSender().getName()) + event.getCommand());	
+                    observer.sendMessage("§b[§aoverseer§b] §4console: §" + nameToColor(observer.getName()) + event.getCommand());	
             }
     }
 
