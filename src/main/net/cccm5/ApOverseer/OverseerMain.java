@@ -76,7 +76,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
             //check if player has permision for main command
             if(!sender.hasPermission("ApOverseer.main"))
             {
-                sender.sendMessage("§4You don't have permission to do that");
+                sender.sendMessage("§cError:§4 You don't have permission to do that");
                 return true;
             }
             //check if player is using help or if theres no arguments
@@ -94,38 +94,43 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                     if(!commandSpy.contains(sender))
                     {
                         commandSpy.add(sender);
-                        sender.sendMessage("Started observing player commands");
+                        sender.sendMessage("§b[§aoverseer§b]§aStarted observing player commands");
                         return true;
                     }else{
                         commandSpy.remove(sender);
-                        sender.sendMessage("Stopped observing player commands");
+                        sender.sendMessage("§b[§aoverseer§b]Stopped observing player commands");
                         return true;
                     }
                 }
                 else
                 {
-                    sender.sendMessage("§4You don't have permision for that!");
+                    sender.sendMessage("§cError:§4 You don't have permision for that!");
                     return true;
                 }
             }
             //sets the output of the command spy and log spy to the 2nd argument
             if(args[0].equalsIgnoreCase("color")){
                 if(!sender.hasPermission("ApOverseer.setColor")){
-                    sender.sendMessage("§4You don't have permission for that!");
+                    sender.sendMessage("§cError:§4 You don't have permission for that!");
                     return true;
                 }
                 if(args.length!=2)
                 {
-                    sender.sendMessage("§4Error: correct format is /overseer color <color>");
+                    sender.sendMessage("§cError:§4 correct format is /overseer color <color>");
                     return true;
                 }
-                if(args[1].length()!=1 || !(args[1].toLowerCase().charAt(0)>='a' && args[1].toLowerCase().charAt(0)<='f') || !(args[1].charAt(0)>='0' && args[1].charAt(0)<='9'))
+                if(args[1].length()!=1)
                 {
-                    sender.sendMessage("§4Error: \"" + args[1] + "\" is not a color code");
+                    sender.sendMessage("§cError:§4 \"" + args[1] + "\" is too long to be a color code");
+                    return true;
+                }
+                if(!(args[1].toLowerCase().charAt(0)>='a' && args[1].toLowerCase().charAt(0)<='f') || !(args[1].charAt(0)>='0' && args[1].charAt(0)<='9'))
+                {
+                    sender.sendMessage("§cError:§4 \"" + args[1] + "\" is not a color code");
                     return true;
                 }
                 nameColor.put(sender.getName(),args[1]);
-                sender.sendMessage("§acolor set to §" + args[1] + "&" +args[1]);
+                sender.sendMessage("§b[§aoverseer§b]§acolor set to §" + args[1] + "&" +args[1]);
                 return true;
             }
         }
