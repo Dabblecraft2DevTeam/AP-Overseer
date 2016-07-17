@@ -28,7 +28,7 @@ import org.apache.logging.log4j.core.layout.PatternLayout;
 public final class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
     private List<String> chatCommands,excludedCommands;
-    private List<CommandSender> commandSpy,socialSpy=new ArrayList<CommandSender>();
+    private List<CommandSender> commandSpy=new ArrayList<CommandSender>(),socialSpy=new ArrayList<CommandSender>();
     private HashMap<String, String> nameColor = new HashMap<String, String>();
     private boolean includeChat;
     @Override
@@ -112,7 +112,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
             if(!includeChat){
                 if(args[0].equalsIgnoreCase("socialSpy")||args[0].equalsIgnoreCase("sspy")){
                     if(sender.hasPermission("ApOverseer.socialSpy")){
-                        if(!commandSpy.contains(sender))
+                        if(!socialSpy.contains(sender))
                         {
                             socialSpy.add(sender);
                             sender.sendMessage("§b[§aoverseer§b]§aStarted observing social commands");
@@ -167,7 +167,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         {
             for(String testString : chatCommands)
             {
-                if(event.getMessage().toLowerCase().startsWith(testString+" ")){
+                if(event.getMessage().toLowerCase().startsWith(testString+" ") || event.getMessage().equalsIgnoreCase(testString)){
                     chatCommand=true;
                     testState=false;
                 }
@@ -175,7 +175,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         }
         for(String testString : excludedCommands)
         {
-            if(event.getMessage().toLowerCase().startsWith(testString+" "))
+            if(event.getMessage().toLowerCase().startsWith(testString+" ") || event.getMessage().equalsIgnoreCase(testString))
                 testState=false;
         }
         if(testState)
