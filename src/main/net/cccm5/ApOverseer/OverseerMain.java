@@ -28,7 +28,7 @@ import org.apache.logging.log4j.core.layout.PatternLayout;
 public final class OverseerMain extends JavaPlugin implements Listener {
     private FileConfiguration config = getConfig();
     private List<String> chatCommands,excludedCommands;
-    private List<CommandSender> commandSpy=new ArrayList<CommandSender>();
+    private List<CommandSender> commandSpy,socialSpy=new ArrayList<CommandSender>();
     private HashMap<String, String> nameColor = new HashMap<String, String>();
     private boolean includeChat;
     @Override
@@ -108,7 +108,29 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                     return true;
                 }
             }
-            //sets the output of the command spy and log spy to the 2nd argument
+            //executes the socialSpy command if include chat is disabled
+            if(!includeChat){
+                if(args[0].equalsIgnoreCase("socialSpy")||args[0].equalsIgnoreCase("sspy")){
+                    if(sender.hasPermission("ApOverseer.socialSpy")){
+                        if(!commandSpy.contains(sender))
+                        {
+                            socialSpy.add(sender);
+                            sender.sendMessage("§b[§aoverseer§b]§aStarted observing social commands");
+                            return true;
+                        }else{
+                            socialSpy.remove(sender);
+                            sender.sendMessage("§b[§aoverseer§b]Stopped observing social commands");
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        sender.sendMessage("§cError:§4 You don't have permision for that!");
+                        return true;
+                    }
+                }
+            }
+            //sets the output color of the spy commands
             if(args[0].equalsIgnoreCase("color")){
                 if(!sender.hasPermission("ApOverseer.setColor")){
                     sender.sendMessage("§cError:§4 You don't have permission for that!");
@@ -140,12 +162,15 @@ public final class OverseerMain extends JavaPlugin implements Listener {
     @EventHandler
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
         boolean testState=true;
+        boolean chatCommand=false;
         if(!includeChat)
         {
             for(String testString : chatCommands)
             {
-                if(event.getMessage().toLowerCase().startsWith(testString+" "))
+                if(event.getMessage().toLowerCase().startsWith(testString+" ")){
+                    chatCommand=true;
                     testState=false;
+                }
             }
         }
         for(String testString : excludedCommands)
@@ -158,23 +183,32 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 if(!(observer instanceof Player) && !(observer==event.getPlayer()))
                     observer.sendMessage("§b[§aoverseer§b]" + event.getPlayer().getDisplayName() + ": §" + nameToColor(observer.getName())+ event.getMessage());	
             }
+        if(chatCommand)
+            for(CommandSender observer: socialSpy){
+                if((observer instanceof Player))
+                    observer.sendMessage("§b[§aoverseer§b]" + event.getPlayer().getDisplayName() + ": §" + nameToColor(observer.getName()) + event.getMessage());	
+            }
     }
 
     @EventHandler
     public void onServerCommandEvent(ServerCommandEvent event)
     {
         boolean testState=true;
+        boolean chatCommand=false;
         if(!includeChat)
         {
             for(String testString : chatCommands)
             {
-                if(event.getCommand().toLowerCase().startsWith(testString+" "))
+                if(event.getCommand().toLowerCase().startsWith(testString+" ") || event.getCommand().equalsIgnoreCase(testString))
+                {
+                    chatCommand=true;
                     testState=false;
+                }
             }
         }
         for(String testString : excludedCommands)
         {
-            if(event.getCommand().toLowerCase().startsWith(testString+" "))
+            if(event.getCommand().toLowerCase().startsWith(testString+" ") || event.getCommand().equalsIgnoreCase(testString))
                 testState=false;
         }
         if(testState)
@@ -182,6 +216,26 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 if((observer instanceof Player))
                     observer.sendMessage("§b[§aoverseer§b] §4console: §" + nameToColor(observer.getName()) + event.getCommand());	
             }
+        if(chatCommand)
+            for(CommandSender observer: socialSpy){
+                if((observer instanceof Player))
+                    observer.sendMessage("§b[§aoverseer§b] §4console: §" + nameToColor(observer.getName()) + event.getCommand());	
+            }
+    }
+
+    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args){
+        if(command.getName().equalsIgnoreCase("overseer")){
+            List<String> tempList = new ArrayList<String>();
+            if (args.length==1){
+                tempList.add("color");
+                tempList.add("commandSpy");
+                tempList.add("help");
+                if(!includeChat)
+                    tempList.add("socialSpy");
+            }
+            return tempList;
+        }
+        return null;
     }
 
     public String nameToColor(String name)

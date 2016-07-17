@@ -1,6 +1,6 @@
 name: Ap-Overseer
 main: net.cccm5.ApOverseer.OverseerMain
-version: 0.5.0
+version: 0.6.0
 commands:
     overseer:
         description: Main command
@@ -15,3 +15,5 @@ permissions:
         description: Allows users to spy on console log
     ApOverseer.setColor:
         description: Allows users to set custom colors for their commands
+    ApOverseer.socialSpy:
+        description: Allows users to spy on social commands
