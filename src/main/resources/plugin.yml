@@ -2,7 +2,7 @@ name: Ap-Overseer
 main: net.cccm5.ApOverseer.OverseerMain
 version: 1.0
 commands:
-    commandSpy:
+    overseer:
         description: Main command
         permission: ApOverseer.main
         usage: /overseer help
