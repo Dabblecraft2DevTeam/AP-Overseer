@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.cccm5.ApOverseer</groupId>
 	<artifactId>APOverseer</artifactId>
-	<version>0.6.2</version>
+	<version>0.6.3</version>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
