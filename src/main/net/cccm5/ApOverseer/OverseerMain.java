@@ -124,7 +124,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                     sender.sendMessage("§cError:§4 \"" + args[1] + "\" is too long to be a color code");
                     return true;
                 }
-                if(!(args[1].toLowerCase().charAt(0)>='a' && args[1].toLowerCase().charAt(0)<='f') || !(args[1].charAt(0)>='0' && args[1].charAt(0)<='9'))
+                if(!(args[1].toLowerCase().charAt(0)>='a' && args[1].toLowerCase().charAt(0)<='f') && !(args[1].charAt(0)>='0' && args[1].charAt(0)<='9'))
                 {
                     sender.sendMessage("§cError:§4 \"" + args[1] + "\" is not a color code");
                     return true;
