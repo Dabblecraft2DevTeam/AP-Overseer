@@ -3,11 +3,15 @@ main: net.cccm5.ApOverseer.OverseerMain
 version: 1.0
 commands:
     commandSpy:
-        description: spys on player commands
-        permission: ApOverseer.commandSpy
-        usage: /commandSpy
+        description: Main command
+        permission: ApOverseer.main
+        usage: /overseer help
 permissions:
+    ApOverseer.main:
+        description: Allows acces to the main command
     ApOverseer.commandSpy:
         description: Allows users to spy on players
     ApOverseer.consoleSpy:
         description: Allows users to spy on console log
+    ApOverseer.setColor:
+        description: Allows users to set custom colors for their commands
