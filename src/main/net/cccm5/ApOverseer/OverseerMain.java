@@ -3,11 +3,13 @@ package net.cccm5.ApOverseer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Collections;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
@@ -164,7 +166,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         return false;
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onPlayerCommandPreprocessEvent(PlayerCommandPreprocessEvent event){
         boolean testState=true;
         boolean chatCommand=false;
@@ -195,7 +197,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
             }
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onServerCommandEvent(ServerCommandEvent event)
     {
         boolean testState=true;
@@ -237,17 +239,17 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 tempList.add("help");
                 if(!includeChat)
                     tempList.add("socialSpy");
-                //if( args[0].length() > 1 ){
-                //    for(String tempString : tempList){
-                //        if(!tempString.startsWith(args[0]))
-                //            tempList.remove(tempString);
-                //    }
-                //}
+                if( args[0].length() > 1 ){
+                    for(String tempString : tempList){
+                        if(!tempString.toLowerCase().startsWith(args[0]))
+                            tempList.remove(tempString);
+                    }
+                }
             }
             if(tempList.size()>0)
                 return tempList;
         }
-        return null;
+        return Collections.emptyList();
     }
 
     public String nameToColor(String name)
