@@ -1,5 +1,7 @@
 package net.cccm5.ApOverseer;
 
+ 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -233,6 +235,7 @@ public final class OverseerMain extends JavaPlugin implements Listener {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args){
         if(command.getName().equalsIgnoreCase("overseer")){
             List<String> tempList = new ArrayList<String>();
+            List<String> altTempList = new ArrayList<String>();
             if (args.length==1){
                 tempList.add("color");
                 tempList.add("commandSpy");
@@ -241,13 +244,13 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                     tempList.add("socialSpy");
                 if( args[0].length() > 1 ){
                     for(String tempString : tempList){
-                        if(!tempString.toLowerCase().startsWith(args[0]))
-                            tempList.remove(tempString);
+                        if(tempString.length()>=args[0].length() && tempString.toLowerCase().startsWith(args[0]))
+                            altTempList.add(tempString);
                     }
                 }
             }
             if(tempList.size()>0)
-                return tempList;
+                return altTempList;
         }
         return Collections.emptyList();
     }
