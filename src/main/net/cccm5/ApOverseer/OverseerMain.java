@@ -1,7 +1,5 @@
 package net.cccm5.ApOverseer;
 
- 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -242,11 +240,13 @@ public final class OverseerMain extends JavaPlugin implements Listener {
                 tempList.add("help");
                 if(!includeChat)
                     tempList.add("socialSpy");
-                if( args[0].length() > 1 ){
+                if( args[0].length() >= 1 ){
                     for(String tempString : tempList){
                         if(tempString.length()>=args[0].length() && tempString.toLowerCase().startsWith(args[0]))
                             altTempList.add(tempString);
                     }
+                }else{
+                    return tempList;
                 }
             }
             if(tempList.size()>0)
