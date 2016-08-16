@@ -187,12 +187,12 @@ public final class OverseerMain extends JavaPlugin implements Listener {
         }
         if(testState)
             for(CommandSender observer: commandSpy){	
-                if(!(observer instanceof Player) && !(observer==event.getPlayer()))
+                if(observer instanceof Player && !(observer==event.getPlayer()))
                     observer.sendMessage("§b[§aoverseer§b]" + event.getPlayer().getDisplayName() + ": §" + nameToColor(observer.getName())+ event.getMessage());	
             }
         if(chatCommand)
             for(CommandSender observer: socialSpy){
-                if(!(observer instanceof Player) && !(observer==event.getPlayer()))
+                if(observer instanceof Player && !(observer==event.getPlayer()))
                     observer.sendMessage("§b[§aoverseer§b]" + event.getPlayer().getDisplayName() + ": §" + nameToColor(observer.getName()) + event.getMessage());	
             }
     }
